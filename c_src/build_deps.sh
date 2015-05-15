@@ -62,11 +62,11 @@ case "$1" in
     *)
         if [ ! -d snappy-$SNAPPY_VSN ]; then
             tar -xzf snappy-$SNAPPY_VSN.tar.gz
-            (cd snappy-$SNAPPY_VSN && ./configure --prefix=$BASEDIR/system --libdir=$BASEDIR/system/lib --with-pic)
+            (cd snappy-$SNAPPY_VSN && ./configure --host=arm-linux-gnueabi --prefix=$BASEDIR/system --libdir=$BASEDIR/system/lib --with-pic)
         fi
         
         export CC="/usr/bin/arm-linux-gnueabi-gcc"
-        export CXX="/usr/bin/arm-linux-gnueabi-cpp"
+        export CXX="/usr/bin/arm-linux-gnueabi-g++"
 
         (cd snappy-$SNAPPY_VSN && $MAKE && $MAKE install)
 
