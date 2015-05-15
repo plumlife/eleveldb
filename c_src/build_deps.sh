@@ -64,6 +64,9 @@ case "$1" in
             tar -xzf snappy-$SNAPPY_VSN.tar.gz
             (cd snappy-$SNAPPY_VSN && ./configure --prefix=$BASEDIR/system --libdir=$BASEDIR/system/lib --with-pic)
         fi
+        
+        export CC="/usr/bin/arm-linux-gnueabi-gcc"
+        export CXX="/usr/bin/arm-linux-gnueabi-cpp"
 
         (cd snappy-$SNAPPY_VSN && $MAKE && $MAKE install)
 
