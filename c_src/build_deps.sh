@@ -77,8 +77,8 @@ case "$1" in
         export TARGET_OS="OS_LINUX_ARM_CROSSCOMPILE"
 
         if [ ! -d leveldb ]; then
-            git clone git://github.com/basho/leveldb
-            (cd leveldb && git checkout $LEVELDB_VSN)
+            git clone git://github.com/plumlife/leveldb
+            (cd leveldb && git checkout plum-arm)
         fi
 
         (cd leveldb && $MAKE all)
