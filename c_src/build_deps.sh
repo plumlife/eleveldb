@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH
+
 # /bin/sh on Solaris is not a POSIX compatible shell, but /usr/bin/ksh is.
 if [ `uname -s` = 'SunOS' -a "${POSIX_SHELL}" != "true" ]; then
     POSIX_SHELL="true"
@@ -65,8 +67,8 @@ case "$1" in
             (cd snappy-$SNAPPY_VSN && ./configure --host=arm-linux-gnueabi --prefix=$BASEDIR/system --libdir=$BASEDIR/system/lib --with-pic)
         fi
         
-        export CC="/root/x-tools/arm-plum-linux-gnueabi/bin/arm-plum-linux-gnueabi-gcc"
-        export CXX="/root/x-tools/arm-plum-linux-gnueabi/bin/arm-plum-linux-gnueabi-g++"
+        export CC="arm-plum-linux-gnueabi-gcc"
+        export CXX="arm-plum-linux-gnueabi-g++"
 
         (cd snappy-$SNAPPY_VSN && $MAKE && $MAKE install)
 
