@@ -56,8 +56,8 @@ case "$1" in
 
     get-deps)
         if [ ! -d leveldb ]; then
-            git clone git://github.com/basho/leveldb
-            (cd leveldb && git checkout $LEVELDB_VSN)
+            git clone git://github.com/plumlife/leveldb
+            (cd leveldb && git checkout ARM32)
         fi
         ;;
 
@@ -80,7 +80,7 @@ case "$1" in
 
         if [ ! -d leveldb ]; then
             git clone git://github.com/plumlife/leveldb
-            (cd leveldb && git checkout plum-arm)
+            (cd leveldb && git checkout ARM32)
         fi
 
         (cd leveldb && $MAKE all)
