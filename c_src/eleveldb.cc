@@ -202,7 +202,7 @@ struct EleveldbOptions
         syslog(LOG_ERR, "  m_LeveldbGroomingThreads: %d\n", m_LeveldbGroomingThreads);
 
         syslog(LOG_ERR, "         m_TotalMemPercent: %d\n", m_TotalMemPercent);
-        syslog(LOG_ERR, "                m_TotalMem: %d\n", m_TotalMem);
+        syslog(LOG_ERR, "                m_TotalMem: %lu\n", m_TotalMem);
 
         syslog(LOG_ERR, "        m_LimitedDeveloper: %s\n", (m_LimitedDeveloper ? "true" : "false"));
         syslog(LOG_ERR, "         m_FadviseWillNeed: %s\n", (m_FadviseWillNeed ? "true" : "false"));
@@ -581,7 +581,7 @@ async_open(
     // 4. fail safe when no guidance given
     if (0==priv.m_Opts.m_TotalMem && 0==priv.m_Opts.m_TotalMemPercent)
     {
-        if (8*1024*1024*1024L < gCurrentTotalMemory)
+        if (8L*1024L*1024LL*1024L < gCurrentTotalMemory)
             use_memory=(gCurrentTotalMemory * 80)/100;  // integer percent
         else
             use_memory=(gCurrentTotalMemory * 25)/100;  // integer percent
