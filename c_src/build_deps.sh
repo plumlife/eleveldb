@@ -10,7 +10,7 @@ if [ `uname -s` = 'SunOS' -a "${POSIX_SHELL}" != "true" ]; then
 fi
 unset POSIX_SHELL # clear it so if we invoke other scripts, they run as ksh as well
 
-LEVELDB_VSN="v1.18"
+LEVELDB_VSN="1.18"
 
 SNAPPY_VSN="1.0.4"
 
@@ -81,8 +81,8 @@ case "$1" in
         export TARGET_OS="OS_LINUX_ARM_CROSSCOMPILE"
 
         if [ ! -d leveldb ]; then
-            git clone git://github.com/google/leveldb
-            (cd leveldb && git checkout $LEVELDB_VSN)
+            git clone git://github.com/plumlife/leveldb
+            (cd leveldb && git checkout ARM32-$LEVELDB_VSN)
         fi
 
         (cd leveldb && $MAKE all)
