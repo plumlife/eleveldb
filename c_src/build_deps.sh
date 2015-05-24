@@ -1,6 +1,8 @@
 #!/bin/bash
 
-LEVELDB_VSN="14478f170bbe3d13bc0119d41b70e112b3925453" # tweaks v1
+export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH
+
+LEVELDB_VSN="1.18"
 SNAPPY_VSN="1.0.4"
 
 set -e
@@ -27,22 +29,28 @@ case "$1" in
     *)
         if [ ! -d snappy-$SNAPPY_VSN ]; then
             tar -xzf snappy-$SNAPPY_VSN.tar.gz
-            (cd snappy-$SNAPPY_VSN && ./configure --prefix=$BASEDIR/system --with-pic)
+            (cd snappy-$SNAPPY_VSN && ./configure --host=arm-linux-gnueabi --prefix=$BASEDIR/system --libdir=$BASEDIR/system/lib --with-pic)
         fi
+        
+        export CC="arm-plum-linux-gnueabi-gcc"
+        export CXX="arm-plum-linux-gnueabi-g++"
+        export AR="arm-plum-linux-gnueabi-ar"
+        export RANLIB="arm-plum-linux-gnueabi-ranlib"
 
-        (cd snappy-$SNAPPY_VSN && make && make install)
+        (cd snappy-$SNAPPY_VSN && $MAKE && $MAKE install)
 
         export CFLAGS="$CFLAGS -I $BASEDIR/system/include"
-        export LDFLAGS="$LDFLAGS -L $BASEDIR/system/lib"
+        export CXXFLAGS="$CXXFLAGS -I $BASEDIR/system/include"
+        export LDFLAGS="$LDFLAGS -L$BASEDIR/system/lib"
         export LD_LIBRARY_PATH="$BASEDIR/system/lib:$LD_LIBRARY_PATH"
+        export TARGET_OS="OS_LINUX_ARM_CROSSCOMPILE"
 
         if [ ! -d leveldb ]; then
-            git clone git://github.com/basho/leveldb
-            (cd leveldb && git checkout $LEVELDB_VSN)
+            git clone git://github.com/plumlife/leveldb
+            (cd leveldb && git checkout ARM32-$LEVELDB_VSN)
         fi
 
-        (cd leveldb && make all)
+        (cd leveldb && $MAKE all)
 
         ;;
 esac
-
