@@ -4,6 +4,7 @@ export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH
 
 LEVELDB_VSN="1.18"
 SNAPPY_VSN="1.0.4"
+MAKE=make
 
 set -e
 
