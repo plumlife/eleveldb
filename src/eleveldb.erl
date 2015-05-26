@@ -37,6 +37,8 @@
          iterator_move/2,
          iterator_close/1]).
 
+-export_type([db_ref/0, itr_ref/0]).
+
 -on_load(init/0).
 
 -ifdef(TEST).
@@ -87,8 +89,6 @@ init() ->
 -opaque db_ref() :: binary().
 
 -opaque itr_ref() :: binary().
-
--export_type([db_ref/0, itr_ref/0]).
 
 -spec open(string(), open_options()) -> {ok, db_ref()} | {error, any()}.
 open(_Name, _Opts) ->
