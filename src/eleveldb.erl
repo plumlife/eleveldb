@@ -88,6 +88,8 @@ init() ->
 
 -opaque itr_ref() :: binary().
 
+-export_type([db_ref/0, itr_ref/0]).
+
 -spec open(string(), open_options()) -> {ok, db_ref()} | {error, any()}.
 open(_Name, _Opts) ->
     erlang:nif_error({error, not_loaded}).
