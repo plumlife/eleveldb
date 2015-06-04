@@ -28,7 +28,6 @@
 
 #include "leveldb/db.h"
 #include "leveldb/write_batch.h"
-#include "leveldb/perf_count.h"
 
 #ifndef INCL_THREADING_H
     #include "threading.h"

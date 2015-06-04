@@ -24,7 +24,6 @@
 
 #include <deque>
 #include <vector>
-#include "leveldb/perf_count.h"
 
 #ifndef INCL_MUTEX_H
     #include "mutex.h"
