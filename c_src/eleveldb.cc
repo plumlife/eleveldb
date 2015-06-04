@@ -40,7 +40,6 @@
 #include "leveldb/write_batch.h"
 #include "leveldb/cache.h"
 #include "leveldb/filter_policy.h"
-#include "leveldb/perf_count.h"
 
 #ifndef INCL_THREADING_H
     #include "threading.h"
